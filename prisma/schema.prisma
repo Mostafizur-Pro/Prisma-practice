@@ -15,6 +15,33 @@ model User{
   id Int @id @default(autoincrement())
   email String @unique
   name String
-  // age Int @default(0)
-  age Int?
+  role String
+
+  @@map("users")
+}
+
+model Profile {
+   id Int @id @default(autoincrement())
+   bio String
+   userId Int
+
+   @@map("profiles")
+}
+
+model Category {
+    id Int @id @default(autoincrement())
+    name String
+
+    @@map("categories")
+}
+
+model Post {
+    id Int @id @default(autoincrement())
+    title String
+    authorId Int
+    categoryId Int
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("posts")
 }
