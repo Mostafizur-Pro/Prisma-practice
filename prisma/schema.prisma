@@ -56,3 +56,15 @@ model Post {
 
     @@map("posts")
 }
+
+
+
+
+// model Comment {
+//   content String @map("comment_text")
+//   email String @map("comment_email")
+//   type Enum @map("comment_type")
+
+
+//   @@map("comments")
+// }
