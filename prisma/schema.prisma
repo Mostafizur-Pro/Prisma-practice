@@ -17,13 +17,18 @@ model User{
   name String
   role String
 
+  profile Profile?
+  posts Post[]
+
   @@map("users")
 }
 
 model Profile {
    id Int @id @default(autoincrement())
    bio String
-   userId Int
+   userId Int @unique
+  //  one-to-one relation ar jonno @unique use korte hobe
+   user User @relation(fields: [userId], references: [id])
 
    @@map("profiles")
 }
@@ -32,6 +37,8 @@ model Category {
     id Int @id @default(autoincrement())
     name String
 
+    posts Post[]
+
     @@map("categories")
 }
 
@@ -39,7 +46,11 @@ model Post {
     id Int @id @default(autoincrement())
     title String
     authorId Int
+      //  many-to-one relation ar jonno @unique use korte hobe
+       author User @relation(fields: [authorId], references: [id])
     categoryId Int
+        category Category @relation(fields: [categoryId], references: [id])
+    
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
